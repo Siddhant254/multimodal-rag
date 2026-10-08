@@ -37,7 +37,10 @@ async def upload_document(file: UploadFile = File(...)):
         while chunk := await file.read(1024 * 1024):
             buffer.write(chunk)
 
-    pages = extract_pdf(str(file_path))
+    pages = extract_pdf(
+    file_path=str(file_path),
+    document_id=document_id,
+)
 
     extraction_file = save_extraction(
         document_id=document_id,
